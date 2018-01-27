@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : NetworkBehaviour {
 
 	public float walkSpeed = 7f;
 	public float jumpSpeed = 3f;
 
 	Rigidbody rb;
 	Collider coll;
+
+	// first person Camera
+	public Camera playerCamera;
 
 	// Track jumping
 	bool jumpPressed = false;
@@ -19,8 +23,27 @@ public class PlayerController : MonoBehaviour {
 		coll = GetComponent<Collider>();
 	}
 
+	void Awake()
+	{
+		playerCamera.enabled = false;
+	}
+
+	public override void OnStartLocalPlayer()
+	{
+		// enable 1st person view if player is not hosting
+		if (isServer == false) {
+			playerCamera.enabled = true;
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
+
+		// basically don't run input handlers for non-local players
+
+		if (!isLocalPlayer) {
+			return;
+		}
 
 		//Planar movement
 		WalkHandler();
