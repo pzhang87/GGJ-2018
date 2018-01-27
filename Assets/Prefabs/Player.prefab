@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 7
   jumpSpeed: 9
-  camera: {fileID: 20233321654266350}
+  playerCamera: {fileID: 20233321654266350}
 --- !u!114 &114940449303987966
 MonoBehaviour:
   m_ObjectHideFlags: 1
