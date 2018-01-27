@@ -45,9 +45,11 @@ public class PlayerController : NetworkBehaviour {
 			return;
 		}
 
-		//Planar movement
-		WalkHandler();
-
+		if (coll) {
+			//Planar movement
+			WalkHandler();
+		}
+				
 		//Vertical movement
 		JumpHandler();
 	}
@@ -124,5 +126,11 @@ public class PlayerController : NetworkBehaviour {
 
 		// If any corner is grounded, the object is grounded
 		return (grounded1 || grounded2 || grounded3 || grounded4);
+ }
+
+ void OnTriggerEnter (Collider collider) {
+	 if (collider.gameObject.tag == "Goal") {
+		 Destroy(gameObject);
+	 }
  }
 }
