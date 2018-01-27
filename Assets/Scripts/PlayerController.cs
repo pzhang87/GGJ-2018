@@ -38,14 +38,8 @@ public class PlayerController : MonoBehaviour {
 		// Input on x ("Horizontal")
 		float hAxis = Input.GetAxis("Horizontal");
 
-		print("Horizontal axis");
-		print(hAxis);
-
 		// Input on z ("Vertical")
 		float vAxis = Input.GetAxis("Vertical");
-
-		print("Vertical axis");
-		print(vAxis);
 
 		// Movement vector
 		Vector3 movement = new Vector3(hAxis * distance, 0f, vAxis * distance);
@@ -105,7 +99,7 @@ public class PlayerController : MonoBehaviour {
  }
 
  void OnTriggerEnter (Collider collider) {
-	 if (collider.gameObject.tag == "Goal") {
+	 if (collider.gameObject.tag == "Goal" || collider.gameObject.tag == "Lava") {
 		 Destroy(gameObject);
 	 }
  }
