@@ -21,12 +21,13 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (coll) {
+			//Planar movement
+			WalkHandler();
 
-		//Planar movement
-		WalkHandler();
-
-		//Vertical movement
-		JumpHandler();
+			//Vertical movement
+			JumpHandler();
+		}
 	}
 
 	void WalkHandler() {
@@ -101,5 +102,11 @@ public class PlayerController : MonoBehaviour {
 
 		// If any corner is grounded, the object is grounded
 		return (grounded1 || grounded2 || grounded3 || grounded4);
+ }
+
+ void OnTriggerEnter (Collider collider) {
+	 if (collider.gameObject.tag == "Goal") {
+		 Destroy(gameObject);
+	 }
  }
 }
