@@ -22,12 +22,12 @@ public class PlayerController : NetworkBehaviour {
 	void CmdSetHost(bool host) {
 		isHost = host;
 	}
-		
+
 	// Track jumping
 	bool jumpPressed = false;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 		rb = GetComponent<Rigidbody>();
 		coll = GetComponent<Collider>();
 		mr = GetComponent<MeshRenderer> ();
@@ -37,12 +37,13 @@ public class PlayerController : NetworkBehaviour {
 //
 //		// enable 1st person view if player is not hosting
 //		if (isServer == true) {
-//		} 
+//		}
 //	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 
+		playerCamera.enabled = false;
 		// basically don't run input handlers for non-local players
 		if (!isLocalPlayer) return;
 		CmdSetHost(isServer && isClient);
@@ -54,20 +55,18 @@ public class PlayerController : NetworkBehaviour {
 		}
 	}
 
-	void ServerUpdate(){
+	void ServerUpdate() {
 		mr.enabled = false;
 		rb.useGravity = false;
-		transform.position = new Vector3 (32, 18, -30);
-		transform.eulerAngles = new Vector3 (18, -41, 0);
-		playerCamera.orthographic = true;
-		playerCamera.orthographicSize = 20.0f;
+		// transform.position = new Vector3 (32, 18, -30);
+		// transform.eulerAngles = new Vector3 (18, -41, 0);
+		// playerCamera.orthographic = true;
+		// playerCamera.orthographicSize = 20.0f;
 	}
 
-	void ClientUpdate(){
-		if (coll) {
-			//Planar movement
-			WalkHandler();
-		}
+	void ClientUpdate() {
+		//Planar movement
+		WalkHandler();
 		//Vertical movement
 		JumpHandler();
 	}
