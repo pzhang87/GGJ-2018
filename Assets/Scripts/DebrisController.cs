@@ -9,9 +9,6 @@ public class DebrisController : NetworkBehaviour {
 
 	public float rotationSpeed = 100f;
 
-	public float radius = 5.0F;
-	public float power = 10.0F;
-
 	void Start(){
 		collider = GetComponent<Collider> ();
 	}
@@ -23,18 +20,5 @@ public class DebrisController : NetworkBehaviour {
 
 	  //rotate on Y
 	  transform.Rotate(Vector3.up * angle, Space.World);
-	}
-
-	void onCollisionEnter(Collision collision){
-		Debug.Log('boom');
-		Vector3 explosionPos = transform.position;
-		Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-		foreach (Collider hit in colliders) {
-			Rigidbody rb = hit.GetComponent<Rigidbody> ();
-
-			if (rb != null)
-				rb.AddExplosionForce (power, explosionPos, radius, 3.0F);
-		}
-
 	}
 }
