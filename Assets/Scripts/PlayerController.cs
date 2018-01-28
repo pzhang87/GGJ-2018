@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class PlayerController : NetworkBehaviour {
+public class PlayerController : MonoBehaviour {
 
 	public float walkSpeed = 7f;
 	public float jumpSpeed = 3f;
@@ -21,7 +20,7 @@ public class PlayerController : NetworkBehaviour {
 	void CmdSetHost(bool host) {
 		isHost = host;
 	}
-
+		
 	// Track jumping
 	bool jumpPressed = false;
 
@@ -67,6 +66,9 @@ public class PlayerController : NetworkBehaviour {
 		if (coll) {
 			//Planar movement
 			WalkHandler();
+
+			//Vertical movement
+			JumpHandler();
 		}
 
 		//Vertical movement
