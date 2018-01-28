@@ -22,10 +22,13 @@ GameObject:
   - component: {fileID: 33512875163469298}
   - component: {fileID: 65188612394860316}
   - component: {fileID: 23958205494651774}
-  - component: {fileID: 114090218176114536}
+  - component: {fileID: 114749000939396356}
+  - component: {fileID: 114845204476415244}
+  - component: {fileID: 54104174657625694}
+  - component: {fileID: 114440800718430036}
   m_Layer: 0
   m_Name: DebrisCube
-  m_TagString: Untagged
+  m_TagString: Explosive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +87,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1070892834729540}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54104174657625694
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070892834729540}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65188612394860316
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -96,7 +114,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114090218176114536
+--- !u!114 &114440800718430036
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -104,7 +122,62 @@ MonoBehaviour:
   m_GameObject: {fileID: 1070892834729540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb565006316a475bbda50bea60946cd, type: 3}
+  m_Script: {fileID: 11500000, guid: af0d9a36716dc45d2b23b02554bc9e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
+  radius: 5
+  power: 10
+--- !u!114 &114749000939396356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070892834729540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 106
+    i1: 226
+    i2: 215
+    i3: 30
+    i4: 134
+    i5: 131
+    i6: 196
+    i7: 247
+    i8: 88
+    i9: 229
+    i10: 162
+    i11: 29
+    i12: 228
+    i13: 249
+    i14: 128
+    i15: 9
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114845204476415244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070892834729540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
