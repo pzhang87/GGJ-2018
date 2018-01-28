@@ -43,8 +43,11 @@ public class PlayerController : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		playerCamera.enabled = isLocalPlayer;
+
 		// basically don't run input handlers for non-local players
 		if (!isLocalPlayer) return;
+
 		CmdSetHost(isServer && isClient);
 
 		if(isHost){
