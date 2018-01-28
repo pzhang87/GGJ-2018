@@ -56,6 +56,11 @@ public class PlayerController : NetworkBehaviour {
 
 	void ServerUpdate(){
 		mr.enabled = false;
+		rb.useGravity = false;
+		transform.position = new Vector3 (32, 18, -30);
+		transform.eulerAngles = new Vector3 (18, -41, 0);
+		playerCamera.orthographic = true;
+		playerCamera.orthographicSize = 20.0f;
 	}
 
 	void ClientUpdate(){
