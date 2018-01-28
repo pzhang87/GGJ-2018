@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : NetworkBehaviour {
 
 	public float walkSpeed = 7f;
 	public float jumpSpeed = 3f;
@@ -58,19 +59,17 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void ServerUpdate(){
-		playerCamera.enabled = false;
+		playerCamera.enabled = true;
 		mr.enabled = false;
+
+		//just move player to right spot
 	}
 
 	void ClientUpdate(){
 		if (coll) {
 			//Planar movement
 			WalkHandler();
-
-			//Vertical movement
-			JumpHandler();
 		}
-
 		//Vertical movement
 		JumpHandler();
 	}
