@@ -10,9 +10,17 @@ public class PlayerController : NetworkBehaviour {
 
 	Rigidbody rb;
 	Collider coll;
+	MeshRenderer mr;
 
 	// first person Camera
 	public Camera playerCamera;
+
+	[SyncVar] public bool isHost;
+
+	[Command]
+	void CmdSetHost(bool host) {
+		isHost = host;
+	}
 
 	// Track jumping
 	bool jumpPressed = false;
@@ -21,38 +29,50 @@ public class PlayerController : NetworkBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody>();
 		coll = GetComponent<Collider>();
+		mr = GetComponent<MeshRenderer> ();
 	}
 
 	void Awake()
 	{
-		playerCamera.enabled = false;
+		playerCamera.enabled = true;
 	}
 
-	public override void OnStartLocalPlayer()
-	{
-		// enable 1st person view if player is not hosting
-		if (isServer == false) {
-			playerCamera.enabled = true;
-		}
-	}
+//	public override void OnStartServer() {
+//
+//		// enable 1st person view if player is not hosting
+//		if (isServer == true) {
+//		} 
+//	}
 
 	// Update is called once per frame
 	void Update () {
 
 		// basically don't run input handlers for non-local players
+		if (!isLocalPlayer) return;
+		CmdSetHost(isServer && isClient);
 
-		if (!isLocalPlayer) {
-			return;
+		if(isHost){
+			ServerUpdate();
+		} else {
+			ClientUpdate();
 		}
+	}
 
+	void ServerUpdate(){
+		playerCamera.enabled = false;
+		mr.enabled = false;
+	}
+
+	void ClientUpdate(){
 		if (coll) {
 			//Planar movement
 			WalkHandler();
 		}
-				
+
 		//Vertical movement
 		JumpHandler();
 	}
+
 
 	void WalkHandler() {
 		rb.velocity = new Vector3(0, rb.velocity.y, 0);
@@ -62,14 +82,8 @@ public class PlayerController : NetworkBehaviour {
 		// Input on x ("Horizontal")
 		float hAxis = Input.GetAxis("Horizontal");
 
-		print("Horizontal axis");
-		print(hAxis);
-
 		// Input on z ("Vertical")
 		float vAxis = Input.GetAxis("Vertical");
-
-		print("Vertical axis");
-		print(vAxis);
 
 		// Movement vector
 		Vector3 movement = new Vector3(hAxis * distance, 0f, vAxis * distance);
