@@ -15,6 +15,7 @@ public class PlayerController : NetworkBehaviour {
 	// first person Camera
 	public Camera playerCamera;
 
+
 	[SyncVar] public bool isHost;
 
 	[Command]
@@ -30,11 +31,6 @@ public class PlayerController : NetworkBehaviour {
 		rb = GetComponent<Rigidbody>();
 		coll = GetComponent<Collider>();
 		mr = GetComponent<MeshRenderer> ();
-	}
-
-	void Awake()
-	{
-		playerCamera.enabled = true;
 	}
 
 //	public override void OnStartServer() {
@@ -59,10 +55,7 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	void ServerUpdate(){
-		playerCamera.enabled = true;
 		mr.enabled = false;
-
-		//just move player to right spot
 	}
 
 	void ClientUpdate(){
