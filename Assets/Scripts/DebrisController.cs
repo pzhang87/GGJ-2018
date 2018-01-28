@@ -26,6 +26,7 @@ public class DebrisController : NetworkBehaviour {
 	}
 
 	void onCollisionEnter(Collision collision){
+		Debug.Log('boom');
 		Vector3 explosionPos = transform.position;
 		Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
 		foreach (Collider hit in colliders) {
@@ -35,6 +36,5 @@ public class DebrisController : NetworkBehaviour {
 				rb.AddExplosionForce (power, explosionPos, radius, 3.0F);
 		}
 
-		Destroy (this);
 	}
 }
