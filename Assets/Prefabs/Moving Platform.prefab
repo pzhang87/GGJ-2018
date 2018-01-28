@@ -53,8 +53,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4605933526444088}
-  - component: {fileID: 114703823795871496}
   - component: {fileID: 114974573650090976}
+  - component: {fileID: 114943489416431356}
+  - component: {fileID: 114022429484286458}
   m_Layer: 0
   m_Name: Moving Platform
   m_TagString: Untagged
@@ -200,20 +201,59 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114703823795871496
+--- !u!114 &114022429484286458
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1386192125460490}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6f9b44667144edf937199385ec6af6, type: 3}
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 7
-  jumpSpeed: 3
-  playerCamera: {fileID: 0}
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114943489416431356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386192125460490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 38
+    i1: 56
+    i2: 250
+    i3: 56
+    i4: 252
+    i5: 250
+    i6: 148
+    i7: 244
+    i8: 186
+    i9: 236
+    i10: 247
+    i11: 13
+    i12: 29
+    i13: 85
+    i14: 106
+    i15: 212
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114974573650090976
 MonoBehaviour:
   m_ObjectHideFlags: 1
