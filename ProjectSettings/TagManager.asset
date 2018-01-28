@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Goal
   - Lava
+  - Explosive
   layers:
   - Default
   - TransparentFX
