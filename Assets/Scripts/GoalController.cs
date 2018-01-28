@@ -7,7 +7,7 @@ public class GoalController : MonoBehaviour {
 	public float rotationSpeed = 100f;
 
 	// Update is called once per frame
-	void Update () {
+	void Update() {
 	  //distance (in angles) to rotate on each frame. distance = speed * time
 	  float angle = rotationSpeed * Time.deltaTime;
 
