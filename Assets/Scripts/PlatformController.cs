@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlatformController : MonoBehaviour {
+public class PlatformController : NetworkBehaviour {
 
 	public Transform platform;
 	public Transform startTransform;
