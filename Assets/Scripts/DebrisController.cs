@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class DebrisController : NetworkBehaviour {
-
-	Collider collider;
+	public float radius = 5.0F;
+	public float power = 10.0F;
 
 	public float rotationSpeed = 100f;
 
@@ -21,4 +21,16 @@ public class DebrisController : NetworkBehaviour {
 	  //rotate on Y
 	  transform.Rotate(Vector3.up * angle, Space.World);
 	}
+
+	void onEnterTrigger (Collider other){
+		Vector3 explosionPos = transform.position;
+		Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+		foreach (Collid	er hit in colliders)
+		{
+			Rigidbody rb = hit.GetComponent<Rigidbody>();
+
+			if (rb != null)
+				rb.AddExplosionForce(power, explosionPos, radius, 3.0F);	
+		}
+		this.gameObject.SetActive(false);
 }
