@@ -9,10 +9,6 @@ public class DebrisController : NetworkBehaviour {
 
 	public float rotationSpeed = 100f;
 
-	void Start(){
-		collider = GetComponent<Collider> ();
-	}
-
 	// Update is called once per frame
 	void Update () {
 	  //distance (in angles) to rotate on each frame. distance = speed * time
@@ -24,13 +20,13 @@ public class DebrisController : NetworkBehaviour {
 
 	void onEnterTrigger (Collider other){
 		Vector3 explosionPos = transform.position;
-		Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-		foreach (Collid	er hit in colliders)
-		{
-			Rigidbody rb = hit.GetComponent<Rigidbody>();
+		Collider[] colliders = Physics.OverlapSphere (explosionPos, radius);
+		foreach (Collider hit in colliders) {
+			Rigidbody rb = hit.GetComponent<Rigidbody> ();
 
 			if (rb != null)
-				rb.AddExplosionForce(power, explosionPos, radius, 3.0F);	
+				rb.AddExplosionForce (power, explosionPos, radius, 3.0F);	
 		}
-		this.gameObject.SetActive(false);
+		this.gameObject.SetActive (false);
+	}
 }
